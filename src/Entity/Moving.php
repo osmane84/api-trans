@@ -43,12 +43,25 @@ class Moving
      * @Serializer\Expose
      */
     private $startZipCode;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @Serializer\Expose
+     */
+    private $satartLevel;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Serializer\Expose
+     */
+    private $satartElevator;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @Serializer\Expose
      * @Assert\NotBlank
      */
+    
     private $cameAdress;
 
     /**
@@ -68,13 +81,13 @@ class Moving
      * @ORM\Column(type="integer", nullable=true)
      * @Serializer\Expose
      */
-    private $level;
+    private $cameLevel;
 
     /**
      * @ORM\Column(type="boolean")
      * @Serializer\Expose
      */
-    private $elevator;
+    private $cameElevator;
 
     /**
      * @ORM\Column(type="float")
@@ -326,6 +339,54 @@ class Moving
     public function setOwner(?Owner $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getSatartLevel(): ?int
+    {
+        return $this->satartLevel;
+    }
+
+    public function setSatartLevel(?int $satartLevel): self
+    {
+        $this->satartLevel = $satartLevel;
+
+        return $this;
+    }
+
+    public function getSatartElevator(): ?bool
+    {
+        return $this->satartElevator;
+    }
+
+    public function setSatartElevator(bool $satartElevator): self
+    {
+        $this->satartElevator = $satartElevator;
+
+        return $this;
+    }
+
+    public function getCameLevel(): ?int
+    {
+        return $this->cameLevel;
+    }
+
+    public function setCameLevel(?int $cameLevel): self
+    {
+        $this->cameLevel = $cameLevel;
+
+        return $this;
+    }
+
+    public function getCameElevator(): ?bool
+    {
+        return $this->cameElevator;
+    }
+
+    public function setCameElevator(bool $cameElevator): self
+    {
+        $this->cameElevator = $cameElevator;
 
         return $this;
     }
