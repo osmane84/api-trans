@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 
 /**
@@ -13,6 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * @Serializer\ExclusionPolicy("all")
  * 
+ * 
+ * @Hateoas\Relation(
+*      "self",
+*      href = @Hateoas\Route(
+*          "moving_item",
+*          parameters = { "id" = "expr(object.getId())" }
+*      )
+ * )
  */
 class Moving
 {
@@ -48,13 +57,13 @@ class Moving
      * @ORM\Column(type="integer", nullable=true)
      * @Serializer\Expose
      */
-    private $satartLevel;
+    private $startLevel;
 
     /**
      * @ORM\Column(type="boolean")
      * @Serializer\Expose
      */
-    private $satartElevator;
+    private $startElevator;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -141,12 +150,7 @@ class Moving
      */
     private $owner;
 
-
-    public function __construct() {
-       
-    }
-
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -187,6 +191,30 @@ class Moving
         return $this;
     }
 
+    public function getStartLevel(): ?int
+    {
+        return $this->startLevel;
+    }
+
+    public function setStartLevel(?int $startLevel): self
+    {
+        $this->startLevel = $startLevel;
+
+        return $this;
+    }
+
+    public function getStartElevator(): ?bool
+    {
+        return $this->startElevator;
+    }
+
+    public function setStartElevator(bool $startElevator): self
+    {
+        $this->startElevator = $startElevator;
+
+        return $this;
+    }
+
     public function getCameAdress(): ?string
     {
         return $this->cameAdress;
@@ -223,26 +251,26 @@ class Moving
         return $this;
     }
 
-    public function getLevel(): ?int
+    public function getCameLevel(): ?int
     {
-        return $this->level;
+        return $this->cameLevel;
     }
 
-    public function setLevel(?int $level): self
+    public function setCameLevel(?int $cameLevel): self
     {
-        $this->level = $level;
+        $this->cameLevel = $cameLevel;
 
         return $this;
     }
 
-    public function getElevator(): ?bool
+    public function getCameElevator(): ?bool
     {
-        return $this->elevator;
+        return $this->cameElevator;
     }
 
-    public function setElevator(bool $elevator): self
+    public function setCameElevator(bool $cameElevator): self
     {
-        $this->elevator = $elevator;
+        $this->cameElevator = $cameElevator;
 
         return $this;
     }
@@ -343,51 +371,4 @@ class Moving
         return $this;
     }
 
-    public function getSatartLevel(): ?int
-    {
-        return $this->satartLevel;
-    }
-
-    public function setSatartLevel(?int $satartLevel): self
-    {
-        $this->satartLevel = $satartLevel;
-
-        return $this;
-    }
-
-    public function getSatartElevator(): ?bool
-    {
-        return $this->satartElevator;
-    }
-
-    public function setSatartElevator(bool $satartElevator): self
-    {
-        $this->satartElevator = $satartElevator;
-
-        return $this;
-    }
-
-    public function getCameLevel(): ?int
-    {
-        return $this->cameLevel;
-    }
-
-    public function setCameLevel(?int $cameLevel): self
-    {
-        $this->cameLevel = $cameLevel;
-
-        return $this;
-    }
-
-    public function getCameElevator(): ?bool
-    {
-        return $this->cameElevator;
-    }
-
-    public function setCameElevator(bool $cameElevator): self
-    {
-        $this->cameElevator = $cameElevator;
-
-        return $this;
-    }
 }
