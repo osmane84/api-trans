@@ -34,12 +34,12 @@ class MovingRepository extends ServiceEntityRepository
     }
   
   
-    public function search( $filter, $order = 'asc', $limit = 20, $offset = 0)
+    public function search( $filter, $order = 'ASC', $limit = 20, $offset = 0)
     {
         $qb = $this 
                 ->createQueryBuilder('m')
                 ->select('m')
-                ->orderBy('m.name', $order )
+                ->orderBy('m.id', $order )
             ;
         if($filter  ){
             $qb

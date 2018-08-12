@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Validator\Constraints as Assert;
-use Hateoas\Configuration\Annotation as Hateoas;
 
 
 /**
@@ -15,12 +14,6 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @Serializer\ExclusionPolicy("all")
  * 
  * 
- * @Hateoas\Relation(
-*      "self",
-*      href = @Hateoas\Route(
-*          "moving_item",
-*          parameters = { "id" = "expr(object.getId())" }
-*      )
  * )
  */
 class Moving

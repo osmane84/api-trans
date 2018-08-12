@@ -37,8 +37,8 @@ class MovingController extends FOSRestController
      * )
      * @Rest\QueryParam(
      *     name="order",
-     *     requirements="asc|desc",
-     *     default="asc",
+     *     requirements="ASC|DESC",
+     *     default="DESC",
      *     description="Sort order (asc or desc)"
      * )
      * @Rest\QueryParam(
